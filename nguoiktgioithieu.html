@@ -8,22 +8,46 @@
    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
      <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
 
-     <style type="text/css">
+ <style>
+ .customList {
+height: 100%;
+width: 250px;
+background-color: silver;
+font-size: large;
+padding: 10px;
+}
        .customDiv{
-        margin-left: 550px;
+        margin-left: 600px;
         margin-top:7px;
        }
-     </style>
+       table {
+    font-family: arial, sans-serif;
+    border-collapse: collapse;
+    
+}
+
+td, th {
+    border: 1px solid #dddddd;
+    text-align: left;
+    padding: 8px;
+}
+
+tr:nth-child(even) {
+    background-color: #dddddd;
+}
+  </style>
 </head>
 <body>
   <div class="container">
+  <br>
     <div class="row">
-      <div class="col-xs-12">  
-      <img src="SPKT.jpg" width="100%">   
-      <a href="trangchu6.html" style = "font-size: 20px">Trang chu</a>  
+
+      <div class="col-xs-12">
+      <img src="SPKT.jpg" width="100%">
+        <a href="trangchu6.html"  style = "font-size: 20px">Trang chu</a>
         <button class="btn btn-primary btn-sm pull-right" type="button" id="btnShowModal">Dang Nhap</button>
         <div class="modal fade" data-ketboard="false" data-backdrop="static" id="loginModal" tabindex="1">
-          <div class="modal-dialog">
+          <div class="modal-dialog modal-body">
             <div class="modal-content">
               <div class="modal-header">
                 <button class="close" data-dismiss ="modal">&times;</button>
@@ -31,7 +55,7 @@
               </div>
               <div class="modal-body">
                 <form>
-                 <div class="form-group">
+                <div class="form-group">
                     <form>
                       <input type="radio" name="gender" value="giangvien"> Giang Vien
                       <input type="radio" name="gender" value="admin"> Admin
@@ -40,7 +64,6 @@
                     </form>
                   
                 </div>
-
                   <div class="form-group">
                     <label for = "inputUsername">Username</label>
                     <input type="text" id="inputUsername" placeholder="Login Username" class="form-control">
@@ -58,84 +81,42 @@
             </div>
           </div>
          </div>
-    <ul id="tabs" class="nav nav-tabs" data-tabs="tabs">
-        <li class="active"><a href="#Noidung" data-toggle="tab">Noi Dung</a></li>
-        <li><a href="#Filevanban" data-toggle="tab">File Van Ban</a></li>
-        <li><a href="#Hinhanh" data-toggle="tab">Hinh Anh</a></li>
-        <li><a href="#Video" data-toggle="tab">Video</a></li>
-    </ul>
-    <div id="my-tab-content" class="tab-content">
-        <div class="tab-pane active" id="Noidung">
-            <h1>Noi dung minh chung:</h1>
-            <p> Phan la con gai chua mot lan yeu ai nhin ve tuong lai ma thay sao song rong duong dai</p>
-        </div>
-        <div class="tab-pane" id="Filevanban">
-            <h1>Cac File van ban:</h1>
-            
-        </div>
-        <div class="tab-pane" id="Hinhanh">
-            <h1>Minh chung Hinh anh</h1>
-            <div class = "row">
-    <div class = "col-lg-3 col-md-4 col-sm-6">
-      <a href = "baby.jpg" class = "thumbnail";>
-        <p> BABY </p>
-        <img src = "baby.jpg"/>
-      </a>
-    </div>
-    <div class = "col-lg-3 col-md-4 col-sm-6">
-      <a href = "mountain.jpg" class = "thumbnail";>
-        <p> MOUNTAIN </p>
-        <img src = "mountain.jpg"/>
-      </a>
-    </div>      
-    <div class = "col-lg-3 col-md-4 col-sm-6">
-      <a href = "lake.jpg" class = "thumbnail";>
-        <p> LAKE </p>
-        <img src = "lake.jpg"/>
-      </a>
-    </div>
-    <div class = "col-lg-3 col-md-4 col-sm-6">
-      <a href = "cookie.jpg" class = "thumbnail";>
-        <p> COOKIE </p>
-        <img src = "cookie.jpg"/>
-      </a>
-    </div>
-    <div class = "col-lg-3 col-md-4 col-sm-6">
-      <a href = "candy.jpg" class = "thumbnail";>
-        <p> CANDY </p>
-        <img src = "candy.jpg"/>
-      </a>
-    </div>
-    <div class = "col-lg-3 col-md-4 col-sm-6">
-      <a href = "chocolate.jpg" class = "thumbnail";>
-        <p> CHOCOLATE </p>
-        <img src = "chocolate.jpg"/>
-      </a>
-    </div>
-    <div class = "col-lg-3 col-md-4 col-sm-6">
-      <a href = "bird.jpg" class = "thumbnail";>
-        <p> BIRD </p>
-        <img src = "bird.jpg"/>
-      </a>
-    </div>
-    <div class = "col-lg-3 col-md-4 col-sm-6">
-      <a href = "ball.jpg" class = "thumbnail";>
-        <p> BALL </p>
-        <img src = "ball.jpg"/>
-      </a>
-    </div>
-</div>
 
-        </div>
-        <div class="tab-pane" id="Video">
-            <h1>Minh chung Video</h1>
-            <iframe width="560" height="315" src="https://www.youtube.com/embed/Sde8wC5PicE" frameborder="0" allowfullscreen></iframe>             
-            </video>
-        </div>
+        
     </div>
+    <br>
+    <br>
+    <div class="row">
+     <div align="right">
+        <div id="custom-search-input">
+          <div id="search" class="input-group col-md-3">
+            <input type="text" class="  search-query form-control" placeholder="" />
+            <span class="input-group-btn">
+              <button class="btn btn-success" type="button">
+                <span class=" glyphicon glyphicon-search"></span>
+              </button>
+            </span>
+          </div>
+        </div>
+        </div>
+
       </div>
     </div>
+    <div class ="row" style = "margin-top: 50px">
+    <div class ="customList col-md-4 list-group">   
+      <ul style = "list-style-type: none" class = "list-group">
+        <a href="nguoikt.html" class= "list-group-item">Muc Minh Chung</a>
+        <a href="nguoiktgioithieu.html" class="list-group-item active">Gioi Thieu</a>
+      </ul>
+    </div>
+    <div>
+      
+
+    </div>
+   
   </div>
+  </div>
+  
   <script type="text/javascript">
     $(document).ready(function(){
       $('#btnShowModal').click(function(){
