@@ -85,8 +85,8 @@ th, td {
 			<thead>
 			<tr>
 				<th class = "texttable" style = "font-size: 20px">Ten Tai Khoan</th>
-				<th class = "texttable">Chuc Vu</th>
-				<th class = "texttable">Danh Dau</th>
+				<th class = "texttable" style = "font-size: 20px">Chuc Vu</th>
+				<th class = "texttable" style = "font-size: 20px">Danh Dau</th>			
 			</tr>
 			</thead>
 			<tbody>
@@ -123,120 +123,28 @@ th, td {
 			</tbody>
 			</table>
 		</div>
-
-		<div class="btn-group-vertical col-md-2 button">
-			<div class = " btn" style = "margin-top: 10px">
-			<button class="btn btn-primary" type="button" id="btnRegisterModal">Them Tai Khoan</button>
-		        <div class="modal fade" data-ketboard="false" data-backdrop="static" id="RegisterModal" tabindex="-1">
-		          <div class="modal-dialog modal-sm">
-		            <div class="modal-content">
-		              <div class="modal-header">
-		                <button class="close" data-dismiss ="modal">&times;</button>
-		                <h4 class="modal-title">Them Tai Khoan</h4>
-		              </div>
-		              <div class="modal-body">
-		                <form>
-		                  <div class="form-group">
-		                    <label for = "inputUsername">Ma so</label>
-		                    <input type="text" id="inputUsername" placeholder=" Username" class="form-control">
-		                  </div>
-		                  <div class="form-group">
-		                    <label for="inputPass">Mat Khau</label>
-		                    <input type="Password" id="inputPass" placeholder=" Password" class="form-control">
-		                  </div>
-		                  <div class="form-group">
-		                    <label for="inputPass">Nhap Lai Mat Khau</label>
-		                    <input type="Password" id="inputPass" placeholder="Confirm Password" class="form-control">
-		                  </div>
-		                  <div class="form-group">
-		                    <label for="email">Email:</label>
-		                    <input type="email" class="form-control" id="email" placeholder="Enter email">
-		                  </div>
-		                </form>
-		              </div>
-		              <div class="modal-footer">
-		                <button class="btn btn-primary" type="submit">Register</button>
-		                <button class="btn btn-primary" data-dismiss="#RegisterModal" type="button" id="btnHideModal1">Close</button>
-		              </div>
-		            </div>
-		          </div>
-		         </div>
-			</div>
-			<div class = " btn  style = "margin-top: 10px"">
-			<button class="btn btn-primary" type="button" id="btnRegisterModal1">Sua Tai Khoan</button>
-		        <div class="modal fade" data-ketboard="false" data-backdrop="static" id="RegisterModal1" tabindex="1">
-		          <div class="modal-dialog modal-sm">
-		            <div class="modal-content">
-		              <div class="modal-header">
-		                <button class="close" data-dismiss ="modal">&times;</button>
-		                <h4 class="modal-title">Sua Tai Khoan</h4>
-		              </div>
-		              <div class="modal-body">
-		                <form>
-		                  <div class="form-group">
-		                    <label for = "inputUsername">Ma so</label>
-		                    <input type="text" id="inputUsername" placeholder=" Username" class="form-control">
-		                  </div>
-		                  <div class="form-group">
-		                    <label for="inputPass">Mat Khau</label>
-		                    <input type="Password" id="inputPass" placeholder=" Password" class="form-control">
-		                  </div>
-		                  <div class="form-group">
-		                    <label for="inputPass">Nhap Lai Mat Khau</label>
-		                    <input type="Password" id="inputPass" placeholder="Confirm Password" class="form-control">
-		                  </div>
-		                  <div class="form-group">
-		                    <label for="email">Email:</label>
-		                    <input type="email" class="form-control" id="email" placeholder="Enter email">
-		                  </div>
-		                </form>
-		              </div>
-		              <div class="modal-footer">
-		                <button class="btn btn-primary" type="submit">Register</button>
-		                <button class="btn btn-primary" type="button" id="btnHideModal2">Close</button>
-		              </div>
-		            </div>
-		          </div>
-		         </div>
-			</div>
-			
-			<div class = " btn  style = "margin-top: 10px"">
-			<button class="btn btn-primary" type="button" id="btnRegisterModal2">Xoa Tai Khoan</button>
-		        <div class="modal fade" data-ketboard="false" data-backdrop="static" id="RegisterModal2" tabindex="1">
-		          <div class="modal-dialog modal-sm">
-		            <div class="modal-content">
-		              <div class="modal-header">
-		                <button class="close" data-dismiss ="modal">&times;</button>
-		                <h4 class="modal-title">Da Xoa Tai Khoan</h4>
-		              </div>
-		            </div>
-				</div>
-			</div>
+		<div id="myModal" class="modal fade in">
+        	<div class="modal-dialog">
+	            <div class="modal-content">
+		          	<div class="modal-header" >
+	           			<h4 class="modal-title">THONG BAO</h4>
+          			</div>
+           			<div class="modal-body">	                    
+               			<p>Tai Khoan Da Duoc Xoa</p>
+           			</div>
+           			<div class="modal-footer">
+               			<div class="btn-group">
+                   			<button class="btn btn-danger" data-dismiss="modal"> Dong</button>
+               			</div>
+           			</div>
+          		</div>
+        	</div>
+        </div>
+		<div class="btn-group-vertical col-md-2">
+			 <a class ="btn btn-primary" style = "margin-bottom: 10px"  href="adminThemtaikhoan.html">Them Tai Khoan</a>
+			 <a class ="btn btn-primary" style = "margin-bottom: 10px" href="adminSuataikhoan.html">Sua Tai Khoan</a>
+			 <a data-toggle="modal" class ="btn btn-primary" style = "margin-bottom: 10px" href="#myModal">Xoa Tai Khoan</a>
 		</div>
-	</div>
 </div>
 </div>
-<script src="js/bootstrap.min.js"></script>
-  <script type="text/javascript">
-    $(document).ready(function(){
-
-       $('#btnRegisterModal').click(function(){
-        $('#RegisterModal').modal('show');
-      });
-        $('#btnRegisterModal1').click(function(){
-        $('#RegisterModal1').modal('show');
-      });
-        $('#btnRegisterModal2').click(function(){
-        $('#RegisterModal2').modal('show');
-      });
-
-
-       $('#btnHideModal1').click(function(){
-        $('#RegisterModal').modal('hide');
-      });
-        $('#btnHideModal2').click(function(){
-        $('#RegisterModal1').modal('hide');
-      });
-    });
-  </script>
 </body>
