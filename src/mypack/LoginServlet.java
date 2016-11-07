@@ -51,12 +51,12 @@ public class LoginServlet extends HttpServlet {
 		try{  
 			// Ket noi database
 			Class.forName("com.mysql.jdbc.Driver"); 
-			Connection con=DriverManager.getConnection("jdbc:mysql://localhost:3306/ltw_kpi","root","123456789");
+			Connection con=DriverManager.getConnection("jdbc:mysql://localhost:3306/ltw_kpi","root","1234567");
 			System.out.println("Connection DB commplete!");
 			// Truy van du trong bang
-			String query ="SELECT* FROM taikhoan where user='"+ username +"' and pass='"+password+"' and roleID="+gender;
+			String query ="SELECT* FROM user where user='"+ username +"' and pass='"+password+"' and roleid="+gender;
 			Statement stmt = con.createStatement();
-			
+
 			ResultSet rs = stmt.executeQuery(query);
 			System.out.println("hsaofsadifso");
 			if (rs.next()){
@@ -82,8 +82,13 @@ public class LoginServlet extends HttpServlet {
 				HttpSession session = request.getSession();				
 				session.setAttribute("ten", ten);
 			}else{
-				System.out.println("Query failed!");
+				out.println("<meta charset='utf-8'>");
+				out.println("<script type=\"text/javascript\">");
+				out.println("alert('Tài khoản hoặc mật khẩu không đúng nha !!!');");
+				out.println("location='trangchu6.jsp';");
+				out.println("</script>");
 			}
+			out.close();
 			con.close();  
 		}catch(Exception e){
 			System.out.println(e.getMessage());

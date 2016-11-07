@@ -3,13 +3,13 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
-<title>Người Kiểm tra</title>
-		<meta charset="utf-8">
+	<title>Người Nhập Minh Chứng</title>
+	<meta charset="utf-8">
 	  <meta name="viewport" content="width=device-width, initial-scale=1">
 	  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 	  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
 	  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-	   <link rel="stylesheet" href="css/nguoikt.css">
+	   <link rel="stylesheet" href="css/nguoinhap.css">
 </head>
 <script type="text/javascript">
   $(document).ready(function(){
@@ -77,42 +77,41 @@
 
 }(window.jQuery);
 </script>
-<body onload="onClickTab('xemcaynguoikt.jsp')">
-	<div class="container" style=" background: url('http://i1280.photobucket.com/albums/a487/Ani_Mai/15_zps9qpuzjxq.png');
+<body onload="onClickTab('xemcaynhap.jsp')">
+	<div class="container" style="background: url('http://i1280.photobucket.com/albums/a487/Ani_Mai/15_zps9qpuzjxq.png');
   background-repeat:no-repeat;
   background-size:cover;
-height: 100%">
+height: 100%;">
          <img src="SPKT.jpg" width="100%">
-		<div class="row">
+ 		<div class="row">
 			<div class="col-md-9">
-				<a href="nguoiktmoi.jsp">Trang chủ</a>
+				<a href="nguoinhapmoi.jsp">Trang chủ</a>
 			</div>
 			<div class="col-md-3">
 				 <a><%=session.getAttribute("ten") %></a>
-				<a href="trangchu6.jsp"
+				<a href="LogoutServlet"
 					class="btn btn-primary btn-sm pull-right" type="button"
 					id="btnShowModal"> Thoát</a>
 			</div>
-		</div>2
-       <br>
+		</div>
        <br>
     <div class="row content">
         <div class="col-sm-3 sidenav">
          <nav class="nav-sidebar">
             <ul class="nav tabs">
-              <li  onclick="onClickTab('xemcaynguoikt.jsp')" class="active"><a href="#" data-toggle="tab">Xem Cây Minh Chứng</a></li>
-              <li  onclick="onClickTab('tim1.jsp')" class=""><a href="#" data-toggle="tab">Tìm Kiếm</a></li>                            
+              <li onclick="onClickTab('xemcaynhap.jsp')" ><a href="#" data-toggle="tab">Danh Sách Minh Chứng</a></li>                  
+              <li onclick="onClickTab('tim1.jsp')"><a href="#" data-toggle="tab">Tìm Kiếm</a></li>                            
              </ul>
           </nav>
 
         </div>
         <div class="col-sm-9">
-        	<div id="menu-content"></div>
+        		<div id="menu-content"></div>
         </div>
      </div>
    </div>
    <script type="text/javascript">
-   
+     <script type="text/javascript">
     $(document).ready(function(){
       $('#btnShowModal').click(function(){
         $('#loginModal').modal('show');
@@ -146,8 +145,9 @@ height: 100%">
   }
 }
   </script>
+   
    <footer style="background-color: rgb(83, 163, 163); min-height: 90px; padding-top: 25px;padding-left:40%; ;color: #fff" >
-  <h5> © 2016 Website quản lý minh chứng KPI - Group 17</h5></footer>
-
+  <h5> © 2016 Website quản lý minh chứng KPI - Group 17</h5>
 </body>
+
 </html>

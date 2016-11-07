@@ -86,7 +86,7 @@ th, td {
 			</div>
 			<div class="col-md-3">
 				 <a><%=session.getAttribute("ten") %></a>
-				<a href="trangchu6.jsp"
+				<a href="LogoutServlet"
 					class="btn btn-primary btn-sm pull-right" type="button"
 					id="btnShowModal"> Thoát</a>
 			</div>

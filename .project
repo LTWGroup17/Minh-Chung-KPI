@@ -1,8 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <projectDescription>
-	<name>demo23</name>
+	<name>demo234</name>
 	<comment></comment>
 	<projects>
+		<project>mysql-connector-java-5.1.39-bin</project>
+		<project>jstl-1.2</project>
+		<project>jstl</project>
 	</projects>
 	<buildSpec>
 		<buildCommand>
