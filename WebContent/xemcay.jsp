@@ -23,41 +23,36 @@
 
 <body>
 	<h4>Cây Minh Chứng</h4>
-	                  	  <div class="panel-body">
-                   	 <div class="tree">
-							 <ul>
-								<li style = "color: red">
-					            <span><i class="glyphicon glyphicon-folder-open" ></i>Hoạt động giảng dạy</span> 
-						            <ul >
-						                <li style = "color : red">
-						                	<span ><i class="glyphicon glyphicon-book" ></i>   minh chứng 1</span> 
-						                   
-						                </li>
-						               <li style = "color : red">
-						                	<span><i class="glyphicon glyphicon-book"></i>   minh chứng 2</span> 
-						                </li>
-						            
-						            </ul>
-						        </li>
-						        <li>
-						            <span><i class="glyphicon glyphicon-folder-open"></i> Hoạt động ngoài giảng dạy</span>
-						            <ul>
-						                <li>
-						                	<span><i class="glyphicon glyphicon-book"></i> minh chứng 1</span> 
-								        </li>
-								        <li>
-						                	<span><i class="glyphicon glyphicon-book"></i> minh chứng 2</span> 
-								        </li>
-								        <li>
-						                	<span><i class="glyphicon glyphicon-book"></i> minh chứng 3</span> 
-								        </li>
-								       
-								    </ul>
-						        </li>
-						    </ul>
-						</div>
-						<a class="btn btn-primary" href = "tree.jsp"> chỉnh sửa </a>
-					</div>
-					 
-   
+	<div class="panel-body">
+	   <div class="tree">
+	      <ul>
+	         <li style = "color: red">
+	            <span><i class="glyphicon glyphicon-folder-open" ></i>Hoạt động giảng dạy</span> 
+	            <ul >
+	               <li style = "color : red">
+	                  <span ><i class="glyphicon glyphicon-book" ></i>   minh chứng 1</span> 
+	               </li>
+	               <li style = "color : red">
+	                  <span><i class="glyphicon glyphicon-book"></i>   minh chứng 2</span> 
+	               </li>
+	            </ul>
+	         </li>
+	         <li>
+	            <span><i class="glyphicon glyphicon-folder-open"></i> Hoạt động ngoài giảng dạy</span>
+	            <ul>
+	               <li>
+	                  <span><i class="glyphicon glyphicon-book"></i> minh chứng 1</span> 
+	               </li>
+	               <li>
+	                  <span><i class="glyphicon glyphicon-book"></i> minh chứng 2</span> 
+	               </li>
+	               <li>
+	                  <span><i class="glyphicon glyphicon-book"></i> minh chứng 3</span> 
+	               </li>
+	            </ul>
+	         </li>
+	      </ul>
+	   </div>
+	   <a class="btn btn-primary" href = "tree.jsp"> chỉnh sửa </a>
+	</div>
 </body>

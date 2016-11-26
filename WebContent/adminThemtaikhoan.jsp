@@ -13,10 +13,12 @@
 <style type="text/css">
 .container{
   background: url('http://i1280.photobucket.com/albums/a487/Ani_Mai/15_zps9qpuzjxq.png');
+  width:100%;
+  height:674px;
   background-repeat:no-repeat;
   background-size:cover;
     body {
-    padding-top:50px;
+    padding-top:0;
 }
 fieldset {
     border: thin solid #ccc; 
@@ -44,15 +46,16 @@ span.req {
 <body>
 <div class="container">
     <div class="row centered-form">
+    <form action="AddUserServlet" method="post" id="fileForm" role="form">
     <div class="col-md-3">
     </div>
         <div  class="col-md-6">
-            <form action="" method="post" id="fileForm" role="form">
+            
             <fieldset><legend class="text-center">Đăng ký tài khoản<span class="req"><small></small></span></legend>
 
             <div class="form-group">
                 <label for="username"><span class="req">* </span> User name:  <small>Vd: taikhoan</small> </label> 
-                    <input class="form-control" type="text" name="username" id = "txt" onkeyup = "Validate(this)" placeholder="ít nhất 4 kí tự" required />  
+                    <input class="form-control" type="text" name="username" placeholder="Nhập username" required />  
                         <div id="errLast"></div>
             </div>
 
@@ -61,41 +64,66 @@ span.req {
                     <input required name="password" type="password" class="form-control inputpass" minlength="4" maxlength="16"  id="pass1" /> </p>
 
                 <label for="password"><span class="req">* </span> Nhập lại Password: </label>
-                    <input required name="password" type="password" class="form-control inputpass" minlength="4" maxlength="16" placeholder="Enter again to validate"  id="pass2" onkeyup="checkPass(); return false;" />
+                    <input required name="re_password" type="password" class="form-control inputpass" minlength="4" maxlength="16" placeholder="Enter again to validate"  id="pass2" onkeyup="checkPass(); return false;" />
                         <span id="confirmMessage" class="confirmMessage"></span>
             </div>
             <div class="form-group">
             <label for="phonenumber"><span class="req">* </span> Số điện thoại: </label>
-                    <input required type="text" name="phonenumber" id="phone" class="form-control phone" maxlength="28" onkeyup="validatephone(this);" placeholder="not used for marketing"/> 
+                    <input required type="text" name="phone" id="phone" class="form-control phone" maxlength="28" onkeyup="validatephone(this);" placeholder="not used for marketing"/> 
             </div>
 
 
             <div class="form-group">     
                 <label for="firstname"><span class="req">* </span> Họ Tên: </label>
-                    <input class="form-control" type="text" name="firstname" id = "txt" onkeyup = "Validate(this)" required /> 
+                    <input class="form-control" type="text" name="fullname" required /> 
                         <div id="errFirst"></div>    
             </div>
-
+			<div class="form-group">
+                <label for="text"><span class="req">* </span> Ngày Sinh: </label> 
+                    <input class="form-control" required type="text" name="birthday" />   
+                        <div class="status" id="status"></div>
+            </div>
             <div class="form-group">
                 <label for="email"><span class="req">* </span> Email: </label> 
                     <input class="form-control" required type="text" name="email" id = "email"  onchange="email_validate(this.value);" />   
                         <div class="status" id="status"></div>
             </div>
-
+			
             <div class="form-group">
                 <input class="btn btn-success" type="submit" name="submit_reg" value="Thêm tài khoản">
                 <a href="admindangnhap.jsp" class="btn btn-success" type="submit" >Hủy</a>
             </div> 
             </fieldset>
-            </form><!-- ends register form -->
+            
 
 <script type="text/javascript">
   document.getElementById("field_terms").setCustomValidity("Please indicate that you accept the Terms and Conditions");
 </script>
         </div><!-- ends col-6 -->
- <div class="col-md-3">
+		 <div class="col-md-2 col-md-offset-1" style="margin-top:50px">
+		 	<div class="form-group">
+            	<label for="text"> Quyền: </label> 
+            	<div class="radio">
+            		<input type="radio" value="1" name="role" checked> Admin
+	            </div>
+	            <div class="radio">
+	            	<input type="radio" value="2" name="role"> Người Nhập
+            	</div>
+            	
+            	<div class="radio">
+            		<input type="radio" value="3" name="role"> Người giao
+	            </div>
+	            <div class="radio">
+	            	<input type="radio" value="4" name="role"> Người Quy Định
+            	</div>
+            	<div class="radio">
+	            	<input type="radio" value="5" name="role"> Người Kiểm Tra
+            	</div>
+            </div>
+    	</div>
+    
     </div>
-    </div>
+    </form><!-- ends register form -->
 
 
 </body>

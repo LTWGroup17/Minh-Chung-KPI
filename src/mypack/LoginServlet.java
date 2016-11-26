@@ -14,6 +14,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import connect.DBConnect;
+
 /**
  * Servlet implementation class LoginServlet
  */
@@ -41,20 +43,24 @@ public class LoginServlet extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
-		response.setContentType("text/html");
-		PrintWriter out=response.getWriter();
+		request.setCharacterEncoding("UTF-8");
+		response.setCharacterEncoding("UTF-8");
+		PrintWriter out = response.getWriter();
+		response.setContentType("text/html; charset=UTF-8");
 		// lay thong so nguoi dung
 		String username = request.getParameter("username");
 		String password = request.getParameter("password");
-		String gender = request.getParameter("gender");
+		String role = request.getParameter("role");
 		//kiem tra username va password
 		try{  
 			// Ket noi database
-			Class.forName("com.mysql.jdbc.Driver"); 
-			Connection con=DriverManager.getConnection("jdbc:mysql://localhost:3306/ltw_kpi","root","1234567");
+			/*Class.forName("com.mysql.jdbc.Driver"); 
+			Connection con=DriverManager.getConnection("jdbc:mysql://localhost:3307/ltw_kpi","root","dinhdang");
+			System.out.println("Connection DB commplete!");*/
+			Connection con = DBConnect.getConnection();
 			System.out.println("Connection DB commplete!");
 			// Truy van du trong bang
-			String query ="SELECT* FROM user where user='"+ username +"' and pass='"+password+"' and roleid="+gender;
+			String query ="SELECT* FROM user where user='"+ username +"' and pass='"+password+"' and roleid="+role;
 			Statement stmt = con.createStatement();
 
 			ResultSet rs = stmt.executeQuery(query);
@@ -62,7 +68,7 @@ public class LoginServlet extends HttpServlet {
 			if (rs.next()){
 				System.out.println("Query complete!");
 				String ten= rs.getString("ten");
-				switch(gender){
+				switch(role){
 				case "1":
 					response.sendRedirect("admindangnhap.jsp");
 					break;
@@ -85,7 +91,7 @@ public class LoginServlet extends HttpServlet {
 				out.println("<meta charset='utf-8'>");
 				out.println("<script type=\"text/javascript\">");
 				out.println("alert('Tài khoản hoặc mật khẩu không đúng nha !!!');");
-				out.println("location='trangchu6.jsp';");
+				out.println("location='index.jsp';");
 				out.println("</script>");
 			}
 			out.close();

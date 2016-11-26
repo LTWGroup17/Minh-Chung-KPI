@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=utf-8"
     pageEncoding="utf-8"%>
+ <%@ page import="java.sql.*"%>
+<%@ page language="java" import = "connect.*,java.util.*" session="true" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -23,10 +25,6 @@ fieldset {
 legend {
    color: #678;
 }
-.form-control {
-
-    width: 95%;
-}
 label small {
     color: #678 !important;
 }
@@ -39,24 +37,87 @@ span.req {
 <body>
 <div class="container">
     <div class="row centered-form">
-    <div class="col-md-3">
     </div>
-        <div  class="col-md-6">
-            <form action="" method="post" id="fileForm" role="form">
+        <div  class="col-md-6 col-md-offset-3" style="top:30px">
+        	<%
+        		Connection con = DBConnect.getConnection();
+        		int id = Integer.parseInt(request.getParameter("id"));
+        		String query = "select * from user where user= '"+id+"'";
+        		Statement stmt = con.createStatement();
+
+    			ResultSet rs = stmt.executeQuery(query);
+    			if(rs.next()){
+        	
+        	%>
+            <form action="EditUserServlet?id=<%=rs.getInt("user") %>" method="post" id="fileForm" role="form">
             <fieldset><legend class="text-center">Đổi thông tin tài khoản<span class="req"><small></small></span></legend>
 
 
             <div class="form-group">     
                 <label for="firstname"><span class="req">* </span> Họ Tên: </label>
-                    <input class="form-control" type="text" name="firstname" id = "txt" onkeyup = "Validate(this)" required /> 
+                    <input class="form-control" type="text" name="fullname" required value="<%=rs.getString("ten")%>"/> 
                         <div id="errFirst"></div>    
             </div>
 
             <div class="form-group">
                 <label for="email"><span class="req">* </span> Email: </label> 
-                    <input class="form-control" required type="text" name="email" id = "email"  onchange="email_validate(this.value);" />   
+                    <input class="form-control" required type="email" name="email" onchange="email_validate(this.value);" value="<%=rs.getString("email")%>" />   
                         <div class="status" id="status"></div>
             </div>
+            <div class="form-group">
+                <label for="text"><span class="req">* </span> Ngày Sinh: </label> 
+                    <input class="form-control" required type="text" name="birthday" onchange="email_validate(this.value);" value="<%=rs.getString("nsinh") %>" />   
+                        <div class="status" id="status"></div>
+            </div>
+            <div class="form-group">
+                <label for="text"><span class="req">* </span> Số điện thoại: </label> 
+                    <input class="form-control" required type="text" name="phone" onchange="email_validate(this.value);" value="<%=rs.getString("tel") %>" />   
+                        <div class="status" id="status"></div>
+            </div>
+            <div class="form-group">
+            	<label for="text"> Quyền: </label> 
+            	<div class="radio">
+            		<input type="radio" value="1" name="role" 
+            		<%if(rs.getInt("roleid") == 1){ %>
+            			checked
+            		<%} %>
+            		
+            		> Admin
+	            </div>
+	            <div class="radio">
+	            	<input type="radio" value="2" name="role"
+	            	<%if(rs.getInt("roleid") == 2){ %>
+            			checked
+            		<%} %>
+	            	
+	            	> Người Nhập
+            	</div>
+            	
+            	<div class="radio">
+            		<input type="radio" value="3" name="role"
+            		<%if(rs.getInt("roleid") == 3){ %>
+            			checked
+            		<%} %>
+            		> Người giao
+	            </div>
+	            <div class="radio">
+	            	<input type="radio" value="4" name="role"
+	            	<%if(rs.getInt("roleid") == 4){ %>
+            			checked
+            		<%} %>
+	            	
+	            	> Người Quy Định
+            	</div>
+            	<div class="radio">
+	            	<input type="radio" value="5" name="role"
+	            	<%if(rs.getInt("roleid") == 5){ %>
+            			checked
+            		<%} %>
+	            	> Người Kiểm Tra
+            	</div>
+            </div>
+            
+            <div></div>
 
             <div class="form-group">
                 <input class="btn btn-success" type="submit" name="submit_reg" value="Sửa tài khoản">
@@ -64,13 +125,11 @@ span.req {
             </div> 
             </fieldset>
             </form><!-- ends register form -->
-
-<script type="text/javascript">
-  document.getElementById("field_terms").setCustomValidity("Please indicate that you accept the Terms and Conditions");
-</script>
+			<%} %>
+			<script type="text/javascript">
+			  document.getElementById("field_terms").setCustomValidity("Please indicate that you accept the Terms and Conditions");
+			</script>
         </div><!-- ends col-6 -->
- <div class="col-md-3">
-    </div>
     </div>
 
 

@@ -5,19 +5,8 @@
 <head>
 <title>Trường đại học sư phạm kỹ thuật tp HCM - Minh Chứng KPI</title>
 <meta charset="utf-8">
-<link rel="stylesheet"
-	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
-	integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u"
-	crossorigin="anonymous">
-<link rel="stylesheet"
-	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css"
-	integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp"
-	crossorigin="anonymous">
-<script
-	src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
-<script
-	src="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
-
+<link type="text/css" href="assets/plugins/bootstrap/bootstrap.min.css" rel="stylesheet">
+<link type="text/css" href="assets/font-awesome.min.css">
 
 
 <style type="text/css">
@@ -26,8 +15,10 @@
 		url('http://i1280.photobucket.com/albums/a487/Ani_Mai/15_zps9qpuzjxq.png');
 	background-repeat: no-repeat;
 	background-size: cover;
-	height: 700px
+	height: 700px;
+	width:100%;
 }
+
 </style>
 </head>
 <body>
@@ -36,7 +27,7 @@
 		<div class="row">
 
 			<div class="col-xs-12">
-				<img src="SPKT.jpg" width="100%">
+				<img src="SPKT.jpg" width="100%" class="img-responsive" style="margin:0px">
 
 				<div style="text-align: center; margin-top: 100px;">
 					<button class="btn btn-primary" style="margin: 0 auto;"
@@ -53,37 +44,30 @@
 								<div class="panel panel-default">
 									<div align="center" class="panel-heading">
 										<h3>Đăng Nhập</h3>
-
 									</div>
 								</div>
 							</div>
 							<form action="LoginServlet" method="post">
 								<div class="modal-body" style="padding: 10px">
 									<div class="form-group">
-										<input type="radio" name="gender" value="2"
-											onclick="nmc()"> Giảng Viên <input type="radio"
-											name="gender" value="1" onclick="adm()"> Admin <input
-											type="radio" name="gender" value="4" onclick="qdmc()">
-										Người Quy Định <input type="radio" name="gender"
-											value="3" onclick="gmc()"> Người Giao <input
-											type="radio" name="gender" value="5" onclick="ktmc()">
-										Người Kiểm Tra
+										<input type="radio" name="role" value="2"> Giảng Viên 
+										<input type="radio" name="role" value="1"> Admin 
+										<input type="radio" name="role" value="4"> Người Quy Định 
+										<input type="radio" name="role" value="3"> Người Giao 
+										<input type="radio" name="role" value="5"> Người Kiểm Tra
 									</div>
 									<div class="form-group">
-										<label for="inputUsername">Username</label> <input type="text"
-											name="username" id="inputUsername"
-											placeholder="Login Username" class="form-control">
+										<label for="inputUsername">Username</label> 
+										<input type="text" name="username" id="inputUsername" placeholder="Login Username" class="form-control">
 									</div>
 									<div class="form-group">
-										<label for="inputPass">Password</label> <input type="Password"
-											name="password" id="inputPass" placeholder="Login Password"
-											class="form-control">
+										<label for="inputPass">Password</label> 
+										<input type="Password" name="password" id="inputPass" placeholder="Login Password" class="form-control">
 									</div>
 
 								</div>
 								<div class="modal-footer">
-									<button class="btn btn-primary" type="submit">Đăng
-										nhập</button>
+									<button class="btn btn-primary" type="submit">Đăng nhập</button>
 									<button class="btn btn-primary" type="button" id="btnHideModal">Đóng</button>
 								</div>
 							</form>
@@ -97,6 +81,8 @@
 
 
 	</div>
+	<script type="text/javascript" src="assets/js/jquery.min.js"></script>
+	<script type="text/javascript" src="assets/js/bootstrap.min.js"></script>
 	<script type="text/javascript">
 		$(document).ready(function() {
 			$('#btnShowModal').click(function() {
@@ -114,7 +100,8 @@
 		});
 	</script>
 	<footer
-		style="background-color: rgb(83, 163, 163); min-height: 90px; padding-top: 25px;padding-left:40%; ;color: #fff">
+		style="background-color: rgb(83, 163, 163); height: 120px; padding-top: 25px;padding-left:40%; ;color: #fff">
 	<h5>© 2016 Website quản lý minh chứng KPI - Group 17</h5>
+	</footer>
 </body>
 </html>
