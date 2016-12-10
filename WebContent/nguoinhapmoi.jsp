@@ -1,15 +1,20 @@
 <%@ page language="java" contentType="text/html; charset=utf-8"
     pageEncoding="utf-8"%>
+    <%@ page import="java.sql.*"%>
+<%@ page language="java" import = "connect.*,java.util.*" session="true" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
 	<title>Người Nhập Minh Chứng</title>
 	<meta charset="utf-8">
 	  <meta name="viewport" content="width=device-width, initial-scale=1">
-	  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-	  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
-	  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+	  <link rel="stylesheet" href="assets/plugins/bootstrap/css/bootstrap.min.css">
+<link rel="stylesheet" href="css/treeview.css">
 	   <link rel="stylesheet" href="css/nguoinhap.css">
+	   
+<link href="assets/css/style.css" rel="stylesheet" />
+<link href="assets/css/main-style.css" rel="stylesheet" />
+<link rel="styelsheet" href="assets/treeview/style.css">
 </head>
 <script type="text/javascript">
   $(document).ready(function(){
@@ -78,6 +83,7 @@
 }(window.jQuery);
 </script>
 <body onload="onClickTab('xemcaynhap.jsp')">
+
 	<div class="container" style="background: url('http://i1280.photobucket.com/albums/a487/Ani_Mai/15_zps9qpuzjxq.png');
   background-repeat:no-repeat;
   background-size:cover;
@@ -85,13 +91,17 @@ height: 100%;">
          <img src="SPKT.jpg" width="100%">
  		<div class="row">
 			<div class="col-md-9">
-				<a href="nguoinhapmoi.jsp">Trang chủ</a>
+				<a href="nguoinhapmoi.jsp" style="margin-left:100px">Trang chủ</a>
 			</div>
 			<div class="col-md-3">
-				 <a><%=session.getAttribute("ten") %></a>
-				<a href="LogoutServlet"
-					class="btn btn-primary btn-sm pull-right" type="button"
-					id="btnShowModal"> Thoát</a>
+				 <div class="btn-group">
+				  <button type="button" class="btn btn-link dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+				    <%=session.getAttribute("ten") %> <span class="caret"></span>
+				  </button>
+				  <ul class="dropdown-menu">
+				    <li><a href="index.jsp">Đăng xuất</a></li>
+				  </ul>
+				</div>
 			</div>
 		</div>
        <br>
@@ -106,7 +116,106 @@ height: 100%;">
 
         </div>
         <div class="col-sm-9">
-        		<div id="menu-content"></div>
+        		<div class="panel panel-default">
+	        <div class="panel-heading"><h4>Cây minh chứng</h4></div>
+	        <div class="panel-body">
+	            <!-- TREEVIEW CODE -->
+	            <ul class="treeview">
+	            	
+	                <li><a href="#">Thư mục minh chứng</a>
+	                	<%
+				         Connection con = DBConnect.getConnection();
+				         String query ="SELECT * FROM minhchung where idroot= 0";
+				         
+				         Statement stmt = con.createStatement();
+				         ResultSet rs = stmt.executeQuery(query);
+				           
+				         %>
+	                	<ul>
+	                		<%
+	                			try{
+	                				while(rs.next()){
+	                				int id = rs.getInt("idmucmc");
+	                		
+	                		%>
+	            			<li><a href="#" style="color:green"><%=rs.getString("tenmucmc") %></a>
+								<%
+						         String query1 ="SELECT * FROM minhchung where idroot= '"+id+"'";
+						         
+						         Statement stmt1 = con.createStatement();
+						         ResultSet rs1 = stmt1.executeQuery(query1);
+						           
+						           
+						         %>
+						         	            				
+	            				<ul>
+	            					<%try{
+							        	   while(rs1.next()){ 
+							        	   %>
+				            			<li><a href="#"><%=rs1.getString("tenmucmc") %></a>
+				            			<%if((rs1.getString("trangthai").equals("Đã giao"))&&(rs1.getString("nguoiduocgiao").equals(session.getAttribute("user")))){%> 
+				            			<span style="color:red" class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
+				            			<button type="button" class="btn btn-success btn-sm"
+								style="margin-left: 30px" data-toggle="modal"
+								data-target="#myModal<%=rs1.getInt("idmucmc")%>">Nhập Minh Chứng</button>
+										<%} else if((rs1.getString("trangthai").equals("Hoàn thành"))&&(rs1.getString("nguoiduocgiao").equals(session.getAttribute("user")))){%>
+				            			<span style="color:green" class="glyphicon glyphicon-ok" aria-hidden="true"></span>
+				            			<%} %>
+				            				<%
+				            				//int user = Integer.parseInt(session.getAttribute("user").toString());
+				            				int subid = rs1.getInt("idmucmc");
+									         String query2 ="SELECT * FROM minhchung where idmucmc= '"+subid+"'";
+									         
+									         Statement stmt2 = con.createStatement();
+									         ResultSet rs2 = stmt2.executeQuery(query2);
+									           if(rs2.next()){
+									         %>	    
+	            						<ul>
+	            							<li>Tên:
+	            							</li>
+	            							<li>Mô tả: <span>
+	            							<%if(rs2.getString("mota") == null){ %>
+												<span style="color:red">Chưa có</span>
+											<%}else{ %>	            							
+	            							<%=rs2.getString("mota") %></span>
+	            							<%} %>
+	            							</li>
+	            							<li>Người nhập:
+	            							<%if(rs2.getString("nguoiduocgiao") == null){ %>
+												<span style="color:red"></span>
+											<%}else{ %>	            							
+	            							<%=rs2.getString("nguoiduocgiao") %></span>
+	            							<%} %>
+	            							</li>
+	            							<li>Các File đính kèm: </li>
+	            							<li>Tình Trạng: <span><%=rs2.getString("trangthai") %></span></li>
+	            						</ul>
+	            						<%} %>
+	            					</li>
+            					
+	                					
+	            					<%
+							       	}
+		                				}catch(Exception e){
+		                				
+		                			}
+	            					%>	
+	            					
+	            				</ul>
+	            			
+	            			</li>
+	            			
+	            			<%}
+	                			}catch(Exception e){
+	                				
+	                			}
+	                		%>
+	            		</ul>
+	            	</li>
+	            </ul>
+	            <!-- TREEVIEW CODE -->
+	        </div>
+	        
         </div>
      </div>
    </div>
@@ -145,9 +254,71 @@ height: 100%;">
   }
 }
   </script>
-   
-   <footer style="background-color: rgb(83, 163, 163); min-height: 90px; padding-top: 25px;padding-left:40%; ;color: #fff" >
-  <h5> © 2016 Website quản lý minh chứng KPI - Group 17</h5>
+ 	  <script src="assets/js/jquery.min.js"></script>
+	<script src="assets/plugins/bootstrap/js/bootstrap.min.js"></script>
+	<script src="assets/js/tree.js"></script>
+	<script src="assets/treeview/script.js"></script>
+   <footer style="background-color: rgb(83, 163, 163); width:100%; min-height: 90px; padding-top: 25px;padding-left:40%; ;color: #fff" >
+  <h5> © 2016 Website quản lý minh chứng KPI - Group 17</h5></footer>
+  
+  
+  <%
+				            				
+        String query4 ="SELECT * FROM minhchung";
+        
+        Statement stmt4 = con.createStatement();
+        ResultSet rs4 = stmt4.executeQuery(query4);
+        try{
+          while(rs4.next()){
+          
+          
+        %>
+  <div class="modal fade" id="myModal<%=rs4.getInt("idmucmc") %>" role="dialog">
+		<div class="modal-dialog">
+			<!-- Modal content-->
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal">&times;</button>
+					<h4 class="modal-title" align="center">Nhập Minh Chứng</h4>
+					<label>Tên minh chứng: <%=rs4.getString("tenmucmc") %></label>
+					
+				</div>
+				<form method="POST" action="NhapMinhChungServlet?id=<%=rs4.getInt("idmucmc") %>">
+					<div class="modal-body">
+						<div class="form-group">
+							<label for="exampleInputEmail1">Mô tả minh chứng</label>
+							<input type="hidden" value="<%=rs4.getInt("idmucmc")%>" name="idmucminhchung">
+							 <input
+								type="text" class="form-control" id="exampleInputEmail1"
+								placeholder="Tham gia đầy đủ các hoạt động" name="mota">
+						</div>
+						<div class="form-group">
+							<label for="exampleInputEmail1">Thời gian</label> <input
+								type="date" class="form-control" id="exampleInputEmail1"
+								placeholder="29/10/2016">
+						</div>
+						<div class="form-group">
+							<label for="exampleInputFile">Các File đính kèm</label> <input
+								type="file" id="exampleInputFile">
+						</div>
+						<br>
+						<div class="row">
+							<div class="modal-footer">
+								<button type="submit" class="btn btn-success" >Xác Nhận</button>
+								<button type="button" class="btn btn-default"
+									data-dismiss="modal" margin-right="10px">Hủy</button>
+							</div>
+						</div>
+	
+					</div>
+				</form>
+			</div>
+		</div>
+		</div>
+				<%}}catch(Exception e){
+								  
+							  }
+									%>
 </body>
 
 </html>

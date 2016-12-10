@@ -50,13 +50,15 @@ public class LoginServlet extends HttpServlet {
 		// lay thong so nguoi dung
 		String username = request.getParameter("username");
 		String password = request.getParameter("password");
-		String role = request.getParameter("role");
+		int role = Integer.parseInt(request.getParameter("role"));
 		//kiem tra username va password
 		try{  
 			// Ket noi database
 			/*Class.forName("com.mysql.jdbc.Driver"); 
-			Connection con=DriverManager.getConnection("jdbc:mysql://localhost:3307/ltw_kpi","root","dinhdang");
+			Connection con=DriverManager.getConnection("jdbc:mysql://localhost:3307/ltw_kpi","root","thien2009");
 			System.out.println("Connection DB commplete!");*/
+			
+			
 			Connection con = DBConnect.getConnection();
 			System.out.println("Connection DB commplete!");
 			// Truy van du trong bang
@@ -69,35 +71,36 @@ public class LoginServlet extends HttpServlet {
 				System.out.println("Query complete!");
 				String ten= rs.getString("ten");
 				switch(role){
-				case "1":
+				case 1:
 					response.sendRedirect("admindangnhap.jsp");
 					break;
-				case "2":
+				case 2:
 					response.sendRedirect("nguoinhapmoi.jsp");
 					break;
-				case "3":
+				case 3:
 					response.sendRedirect("nguoigiaomoi.jsp");
 					break;
-				case "4":
-					response.sendRedirect("nguoigiaomoi.jsp");
+				case 4:
+					response.sendRedirect("nguoiquydinhmoi.jsp");
 					break;
-				case "5":
+				case 5:
 					response.sendRedirect("nguoiktmoi.jsp");
 					break;
 				}
 				HttpSession session = request.getSession();				
 				session.setAttribute("ten", ten);
+				session.setAttribute("user", username);
 			}else{
 				out.println("<meta charset='utf-8'>");
 				out.println("<script type=\"text/javascript\">");
-				out.println("alert('Tài khoản hoặc mật khẩu không đúng nha !!!');");
+				out.println("alert('Tài khoản hoặc mật khẩu không đúng !!!');");
 				out.println("location='index.jsp';");
 				out.println("</script>");
 			}
 			out.close();
 			con.close();  
 		}catch(Exception e){
-			System.out.println(e.getMessage());
+			//System.out.println(e.getMessage());
 			System.out.println("Connection DB failed!");
 		}  
 	}  

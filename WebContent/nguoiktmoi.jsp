@@ -1,15 +1,20 @@
 <%@ page language="java" contentType="text/html; charset=utf-8"
     pageEncoding="utf-8"%>
+    <%@ page import="java.sql.*"%>
+<%@ page language="java" import = "connect.*,java.util.*" session="true" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
 <title>Người Kiểm tra</title>
 		<meta charset="utf-8">
 	  <meta name="viewport" content="width=device-width, initial-scale=1">
-	  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-	  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
-	  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-	   <link rel="stylesheet" href="css/nguoikt.css">
+	  <link rel="stylesheet" href="assets/plugins/bootstrap/css/bootstrap.min.css">
+<link rel="stylesheet" href="css/treeview.css">
+	   <link rel="stylesheet" href="css/nguoinhap.css">
+	   
+<link href="assets/css/style.css" rel="stylesheet" />
+<link href="assets/css/main-style.css" rel="stylesheet" />
+<link rel="styelsheet" href="assets/treeview/style.css">
 </head>
 <script type="text/javascript">
   $(document).ready(function(){
@@ -107,7 +112,83 @@ height: 100%">
 
         </div>
         <div class="col-sm-9">
-        	<div id="menu-content"></div>
+        	<div class="panel panel-default">
+	        <div class="panel-heading"><h4>Cây minh chứng</h4></div>
+	        <div class="panel-body">
+	            <!-- TREEVIEW CODE -->
+	            <ul class="treeview">
+	            	
+	                <li><a href="#">Thư mục minh chứng</a>
+	                	<%
+				         Connection con = DBConnect.getConnection();
+				         String query ="SELECT * FROM minhchung where idroot= 0";
+				         
+				         Statement stmt = con.createStatement();
+				         ResultSet rs = stmt.executeQuery(query);
+				           
+				         %>
+	                	<ul>
+	                		<%
+	                			try{
+	                				while(rs.next()){
+	                				int id = rs.getInt("idmucmc");
+	                		
+	                		%>
+	            			<li><a href="#" style="color:green"><%=rs.getString("tenmucmc") %></a>
+								<%
+						         String query1 ="SELECT * FROM minhchung where idroot= '"+id+"'";
+						         
+						         Statement stmt1 = con.createStatement();
+						         ResultSet rs1 = stmt1.executeQuery(query1);
+						           
+						           
+						         %>
+						         	            				
+	            				<ul>
+	            					<%try{
+							        	   while(rs1.next()){ 
+							        	   %>
+				            			<li><a href="#"><%=rs1.getString("tenmucmc") %></a>
+				            			<%if(rs1.getString("trangthai").equals("Hoàn thành")) {%>
+				            			<span style="color:green" class="glyphicon glyphicon-ok" aria-hidden="true"></span>
+				            			<%}else {%> 
+				            			<span style="color:red" class="glyphicon glyphicon-remove" aria-hidden="true"></span>
+										<%} %>
+				            				<%
+				            				int subid = rs1.getInt("idmucmc");
+									         String query2 ="SELECT * FROM minhchung where idmucmc= '"+subid+"'";
+									         
+									         Statement stmt2 = con.createStatement();
+									         ResultSet rs2 = stmt2.executeQuery(query2);
+									           if(rs2.next()){
+									           
+									           
+									         %>	    
+	            						<%} %>
+	            					</li>
+            					
+	                					
+	            					<%
+							       	}
+		                				}catch(Exception e){
+		                				
+		                			}
+	            					%>	
+	            					
+	            				</ul>
+	            			
+	            			</li>
+	            			
+	            			<%}
+	                			}catch(Exception e){
+	                				
+	                			}
+	                		%>
+	            		</ul>
+	            	</li>
+	            </ul>
+	            <!-- TREEVIEW CODE -->
+	        </div>
         </div>
      </div>
    </div>
@@ -146,6 +227,10 @@ height: 100%">
   }
 }
   </script>
+  <script src="assets/js/jquery.min.js"></script>
+	<script src="assets/plugins/bootstrap/js/bootstrap.min.js"></script>
+	<script src="assets/js/tree.js"></script>
+	<script src="assets/treeview/script.js"></script>
    <footer style="background-color: rgb(83, 163, 163); min-height: 90px; padding-top: 25px;padding-left:40%; ;color: #fff" >
   <h5> © 2016 Website quản lý minh chứng KPI - Group 17</h5></footer>
 

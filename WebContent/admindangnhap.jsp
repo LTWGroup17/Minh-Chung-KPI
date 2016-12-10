@@ -8,8 +8,9 @@
 <title>Người Quản Lý</title>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<link type="text/css" href="assets/plugins/bootstrap/bootstrap.min.css" rel="stylesheet">
-<link type="text/css" href="assets/font-awesome.min.css">
+<link type="text/css" href="assets/plugins/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+<link type="text/css" href="assets/font-awesome/cssfont-awesome.min.css">
+<link rel="stylesheet" href="assets/plugins/datatables/dataTables.bootstrap.css">
 
 
 <style type="text/css">
@@ -99,7 +100,7 @@ footer h5{
 
 			
 			<div class="col-sm-10 col-sm-offset-1 table-responsive">
-				<table class="table table-hover">
+				<table id="example1" class="table table-bordered table-hover table-striped">
 					<thead>
 						<tr>
 							<th>UserName</th>
@@ -188,4 +189,19 @@ footer h5{
 
 <script type="text/javascript" src="assets/js/jquery.min.js"></script>
 <script type="text/javascript" src="assets/js/bootstrap.min.js"></script>
+<script src="assets/plugins/datatables/jquery.dataTables.min.js"></script>
+	<script src="assets/plugins/datatables/dataTables.bootstrap.min.js"></script>
+<script>
+	  $(function () {
+	    $("#example1").DataTable();
+	    $('#example2').DataTable({
+	      "paging": true,
+	      "lengthChange": false,
+	      "searching": true,
+	      "ordering": true,
+	      "info": true,
+	      "autoWidth": false
+	    });
+	  });
+	</script>
 </html>

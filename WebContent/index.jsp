@@ -5,7 +5,7 @@
 <head>
 <title>Trường đại học sư phạm kỹ thuật tp HCM - Minh Chứng KPI</title>
 <meta charset="utf-8">
-<link type="text/css" href="assets/plugins/bootstrap/bootstrap.min.css" rel="stylesheet">
+<link type="text/css" href="assets/plugins/bootstrap/css/bootstrap.min.css" rel="stylesheet">
 <link type="text/css" href="assets/font-awesome.min.css">
 
 
@@ -40,17 +40,13 @@
 					<div class="modal-dialog modal-body">
 						<div class="modal-content">
 							<div class="modal-header">
-								<button class="close" data-dismiss="modal">&times;</button>
-								<div class="panel panel-default">
-									<div align="center" class="panel-heading">
-										<h3>Đăng Nhập</h3>
-									</div>
-								</div>
+								<button type="button" class="close" data-dismiss="modal">&times;</button>
+					<div align="center"><h4 class="modal-title"><b>Đăng nhập</b></h4></div>
 							</div>
 							<form action="LoginServlet" method="post">
 								<div class="modal-body" style="padding: 10px">
 									<div class="form-group">
-										<input type="radio" name="role" value="2"> Giảng Viên 
+										<input type="radio" name="role" value="2" checked> Giảng Viên 
 										<input type="radio" name="role" value="1"> Admin 
 										<input type="radio" name="role" value="4"> Người Quy Định 
 										<input type="radio" name="role" value="3"> Người Giao 
@@ -67,8 +63,8 @@
 
 								</div>
 								<div class="modal-footer">
-									<button class="btn btn-primary" type="submit">Đăng nhập</button>
-									<button class="btn btn-primary" type="button" id="btnHideModal">Đóng</button>
+									<button class="btn btn-success" type="submit">Đăng nhập</button>
+									<button class="btn btn-default" type="button" id="btnHideModal">Đóng</button>
 								</div>
 							</form>
 						</div>

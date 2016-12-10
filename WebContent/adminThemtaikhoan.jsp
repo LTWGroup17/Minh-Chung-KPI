@@ -91,7 +91,7 @@ span.req {
 			
             <div class="form-group">
                 <input class="btn btn-success" type="submit" name="submit_reg" value="Thêm tài khoản">
-                <a href="admindangnhap.jsp" class="btn btn-success" type="submit" >Hủy</a>
+                <input href="admindangnhap.jsp" class="btn btn-error" type="reset"  value="Hủy">
             </div> 
             </fieldset>
             

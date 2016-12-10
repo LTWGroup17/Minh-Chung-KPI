@@ -1,66 +1,53 @@
 <%@ page language="java" contentType="text/html; charset=utf-8"
 	pageEncoding="utf-8"%>
+	<%@ page import="java.sql.*"%>
+<%@ page language="java" import = "connect.*,java.util.*" session="true" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
 <title>Người Quy Định Minh Chứng</title>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<link rel="stylesheet"
-	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-<script
-	src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
-<script
-	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<link rel="stylesheet" href="assets/plugins/bootstrap/css/bootstrap.min.css">
 <link rel="stylesheet" href="css/nguoiquydinh.css">
-
+<link rel="stylesheet" href="css/treeview.css">
 
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<!-- Core CSS - Include with every page -->
-<link href="assets/plugins/bootstrap/bootstrap.css" rel="stylesheet" />
-<link href="assets/font-awesome/css/font-awesome.css" rel="stylesheet" />
-<link href="assets/plugins/pace/pace-theme-big-counter.css"
-	rel="stylesheet" />
-<link href="MyCustom.css" rel="stylesheet">
-
-<link href="bootstrap/css/bootstrap.min.css" rel="stylesheet">
 <link href="assets/css/style.css" rel="stylesheet" />
 <link href="assets/css/main-style.css" rel="stylesheet" />
-
-<!-- Page-Level CSS -->
-<link href="assets/plugins/dataTables/dataTables.bootstrap.css"
-	rel="stylesheet" />
-
+<link rel="styelsheet" href="assets/treeview/style.css">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<link rel="stylesheet" href="css/easyTree.css">
-<link href="http://www.jqueryscript.net/css/jquerysctipttop.css"
-	rel="stylesheet" type="text/css">
-<script
-	src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
-<!-- 	<script src="http://netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>  -->
-<script src="js/easyTree.js"></script>
-<link rel="stylesheet"
-	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+
+<style>
+	.modal-footer{
+		padding:5px;
+	}
+</style>
+
 
 </head>
 
-<body onload="onClickTab('xemcayquydinh.jsp')">
+<body>
 	<div class="container"
 		style="background: url('http://i1280.photobucket.com/albums/a487/Ani_Mai/15_zps9qpuzjxq.png'); background-repeat: no-repeat; background-size: cover; height: 100%">
 		<img src="SPKT.jpg" width="100%">
 		<div class="row">
 			<div class="col-md-9">
-				<a href="nguoiquydinhmoi.jsp">Trang chủ</a>
+				<a href="nguoiquydinhmoi.jsp" style="margin-left:100px">Trang chủ</a>
 			</div>
 			<div class="col-md-3">
-				 <a><%=session.getAttribute("ten") %></a>
-				<a href="LogoutServlet"
-					class="btn btn-primary btn-sm pull-right" type="button"
-					id="btnShowModal"> Thoát</a>
+				 <div class="btn-group">
+				  <button type="button" class="btn btn-link dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+				    <%=session.getAttribute("ten") %> <span class="caret"></span>
+				  </button>
+				  <ul class="dropdown-menu">
+				    <li><a href="index.jsp">Đăng xuất</a></li>
+				  </ul>
+				</div>
 			</div>
 		</div>
 		<br> <br>
@@ -77,113 +64,137 @@
 
 			</div>
 			<div class="col-sm-9">
-				<div id="menu-content"></div>
+				<div id="menu-content">
+				<div class="panel panel-default">
+	        <div class="panel-heading"><h4>Cây minh chứng</h4></div>
+	        <div class="panel-body">
+	            <!-- TREEVIEW CODE -->
+	            <ul class="treeview">
+	            	
+	                <li><a href="#">Thư mục minh chứng</a>
+	                	<%
+				         Connection con = DBConnect.getConnection();
+				         String query ="SELECT * FROM minhchung where idroot= 0";
+				         
+				         Statement stmt = con.createStatement();
+				         ResultSet rs = stmt.executeQuery(query);
+				           
+				         %>
+	                	<ul>
+	                		<%
+	                			try{
+	                				while(rs.next()){
+	                				int id = rs.getInt("idmucmc");
+	                		
+	                		%>
+	            			<li><a href="#"><%=rs.getString("tenmucmc") %></a>
+								<%
+						         String query1 ="SELECT * FROM minhchung where idroot= '"+id+"'";
+						         
+						         Statement stmt1 = con.createStatement();
+						         ResultSet rs1 = stmt1.executeQuery(query1);
+						           
+						           
+						         %>	            				
+	            				<ul>
+	            					<%try{
+							        	   while(rs1.next()){ 
+							        	   %>
+				            			<li><a href="#"><%=rs1.getString("tenmucmc") %></a>
+				            				<%
+				            				int subid = rs1.getInt("idmucmc");
+									         String query2 ="SELECT * FROM minhchung where idmucmc= '"+subid+"'";
+									         
+									         Statement stmt2 = con.createStatement();
+									         ResultSet rs2 = stmt2.executeQuery(query2);
+									           if(rs2.next()){
+									           
+									           
+									         %>	    
+	            						<ul>
+	            							<li>Tên: </li>
+	            							<li>Mô tả: <span><%=rs2.getString("mota") %></span></li>
+	            							<li>Người nhập: </li>
+	            							<li>Các File đính kèm: </li>
+	            							<li>Tình Trạng: <span><%=rs2.getString("trangthai") %></span></li>
+	            						</ul>
+	            						<%} %>
+	            					</li>
+            					
+	                					
+	            					<%
+							       	}
+		                				}catch(Exception e){
+		                				
+		                			}
+	            					%>	
+	            					
+	            				</ul>
+	            			
+	            			</li>
+	            			
+	            			<%}
+	                			}catch(Exception e){
+	                				
+	                			}
+	                		%>
+	            		</ul>
+	            	</li>
+	            </ul>
+	            <!-- TREEVIEW CODE -->
+	        </div>
+				</div>
 			</div>
+			<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal"> Thêm minh chứng</button>
 		</div>
 	</div>
-	<script type="text/javascript">
-		$(document).ready(function() {
-			$('.navbar-nav li').click(function(e) {
-				e.preventDefault();
-				$('li').removeClass('active');
-				$(this).addClass('active');
-			});
-		});
-
-		function onClickTab(url) {
-
-			var xhttp;
-			if (window.XMLHttpRequest) {
-				// code for modern browsers
-
-				xhttp = new XMLHttpRequest();
-			} else {
-				// code for IE6, IE5
-
-				xhttp = new ActiveXObject("Microsoft.XMLHTTP");
-			}
-			xhttp.onreadystatechange = function() {
-				if (this.readyState == 4 && this.status == 200) {
-					document.getElementById("menu-content").innerHTML = this.responseText;
-				}
-			};
-			xhttp.open("GET", url, true);
-			xhttp.send();
-		}
-
-		function onClickPill(url) {
-			var xhttp;
-			if (window.XMLHttpRequest) {
-				// code for modern browsers
-				xhttp = new XMLHttpRequest();
-			} else {
-				// code for IE6, IE5
-				xhttp = new ActiveXObject("Microsoft.XMLHTTP");
-			}
-			xhttp.onreadystatechange = function() {
-				if (this.readyState == 4 && this.status == 200) {
-					document.getElementById("left-menu-content").innerHTML = this.responseText;
-				}
-			};
-			xhttp.open("GET", url, true);
-			xhttp.send();
-		}
-		// phần cây
-		!function($) {
-
-			// Le left-menu sign
-			/* for older jquery version
-			$('#left ul.nav li.parent > a > span.sign').click(function () {
-			    $(this).find('i:first').toggleClass("icon-minus");
-			}); */
-
-			$(document).on("click", "#left ul.nav li.parent > a > span.sign",
-					function() {
-						$(this).find('i:first').toggleClass("icon-minus");
-					});
-
-			// Open Le current menu
-			$("#left ul.nav li.parent.active > a > span.sign").find('i:first')
-					.addClass("icon-minus");
-			$("#left ul.nav li.current").parents('ul.children').addClass("in");
-
-		}(window.jQuery);
-	</script>
-	<script type="text/javascript">
-		$(document).ready(function() {
-			$('#btnShowModal').click(function() {
-				$('#loginModal').modal('show');
-			});
-			$('#btnRegisterModal').click(function() {
-				$('#RegisterModal').modal('show');
-			});
-			$('#btnHideModal').click(function() {
-				$('#loginModal').modal('hide');
-			});
-			$('#btnHideModal1').click(function() {
-				$('#RegisterModal').modal('hide');
-			});
-		});
-
-		function myFunction() {
-			var input, filter, table, tr, td, i;
-			input = document.getElementById("myInput");
-			filter = input.value.toUpperCase();
-			table = document.getElementById("myTable");
-			tr = table.getElementsByTagName("tr");
-			for (i = 0; i < tr.length; i++) {
-				td = tr[i].getElementsByTagName("td")[1];
-				if (td) {
-					if (td.innerHTML.toUpperCase().indexOf(filter) > -1) {
-						tr[i].style.display = "";
-					} else {
-						tr[i].style.display = "none";
-					}
-				}
-			}
-		}
-		
-	</script>
+	<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+	  <div class="modal-dialog" role="document">
+	    <div class="modal-content">
+	    <form action="ThemMinhChungServlet" method="POST">
+	      <div class="modal-header">
+	        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+	        <h4 class="modal-title" id="myModalLabel">Thêm minh chứng</h4>
+	      </div>
+	      <div class="modal-body">
+	        
+			  <div class="form-group">
+			    <label>Tên mục minh chứng</label>
+			    <input type="text" class="form-control" name="tenmucmc" placeholder="Nhập tên mục minh chứng">
+			  </div>
+			  <div class="form-group">
+			  	<label>Minh chứng cha</label>
+			    <select class="form-control" name="root">
+			      <%
+						String query3 ="SELECT * FROM minhchung where idroot=0";
+						Statement stmt3 = con.createStatement();
+						ResultSet rs3 = stmt3.executeQuery(query3);
+						
+		          %>
+		          <option value="0">None</option>
+		          <% try{
+							while(rs3.next()){%>
+		          <option value="<%=rs3.getInt("idmucmc")%>"><%=rs3.getString("tenmucmc") %></option>	     
+				  <%}}catch(Exception e){
+					  
+				  }
+						%>
+				</select>
+			  </div>
+			
+	      </div>
+	      <div class="modal-footer" style="padding:5px">
+	        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+	        <button type="submit" class="btn btn-primary">submit</button>
+	      </div>
+	      </form>
+	    </div>
+	  </div>
+	</div>
+	<script src="assets/js/jquery.min.js"></script>
+	<script src="assets/plugins/bootstrap/js/bootstrap.min.js"></script>
+	<script src="assets/js/tree.js"></script>
+	<script src="assets/treeview/script.js"></script>
 </body>
 <footer
 	style="background-color: rgb(83, 163, 163); min-height: 90px; padding-top: 25px;padding-left:40%; ;color: #fff">
