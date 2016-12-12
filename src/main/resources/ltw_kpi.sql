@@ -35,7 +35,7 @@ CREATE TABLE `minhchung` (
   `ngaynhap` date DEFAULT NULL,
   `ngaytao` date DEFAULT NULL,
   PRIMARY KEY (`idmucmc`)
-) ENGINE=InnoDB AUTO_INCREMENT=13 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=46 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -44,7 +44,7 @@ CREATE TABLE `minhchung` (
 
 LOCK TABLES `minhchung` WRITE;
 /*!40000 ALTER TABLE `minhchung` DISABLE KEYS */;
-INSERT INTO `minhchung` VALUES (1,'Hoạt động giảng dạy',NULL,0,44,NULL,NULL,'',NULL,NULL,NULL),(2,'Hoạt động ngoài giảng dạy',NULL,0,44,NULL,NULL,'',NULL,NULL,NULL),(5,'Dạy đủ số giờ','Giảng viên dạy đủ số giờ theo quy định',1,NULL,2022,NULL,'Hoàn thành','2016-12-16',NULL,NULL),(6,'Dạy đủ số tiết','Nhập ngay',1,NULL,2022,NULL,'Đã giao','2016-12-16',NULL,NULL),(7,'Hoạt động công tác xã hội','sdfghjkl',2,NULL,2032,NULL,'Hoàn thành','2016-12-12',NULL,NULL),(8,'Hội thảo giáo dục','Hội thảo về giáo dục',2,NULL,22,NULL,'Hoàn thành','2016-12-18',NULL,NULL),(9,'Tham gia hội thao CNVC',NULL,2,NULL,NULL,NULL,'Hoàn thành',NULL,NULL,NULL),(10,'Tham gia diễn đàn thảo luận','asdfghjk;lkjhgfdsaasdfghjkjhsaasđfg',2,NULL,2032,NULL,'Hoàn thành','2016-12-17',NULL,NULL),(11,'abc','asdfg',1,NULL,2022,NULL,'Đã giao','2016-12-17',NULL,NULL),(12,'bcd','gjhjhjjhj',1,NULL,2032,NULL,'Hoàn thành','2016-12-17',NULL,NULL);
+INSERT INTO `minhchung` VALUES (35,'Hoạt động giảng dạy',NULL,0,44,NULL,NULL,'Chưa giao',NULL,NULL,'2016-12-12'),(36,'Dạy đủ số giờ',NULL,35,44,NULL,NULL,'Chưa giao',NULL,NULL,'2016-12-12'),(37,'Dạy đủ số tiết',NULL,35,44,NULL,NULL,'Chưa giao',NULL,NULL,'2016-12-12'),(38,'Dạy theo đúng đề cương','abcdxyz',35,44,2022,NULL,'Hoàn thành','2016-12-23','2016-12-12','2016-12-12'),(39,'Hoạt động ngoài giảng dạy',NULL,0,44,NULL,NULL,'Chưa giao',NULL,NULL,'2016-12-12'),(40,'Hoạt động công tác xã hội','Đã nhập minh chứng cho hoạt động CTXH',39,44,1201,'null','Hoàn thành','2016-12-25','2016-12-12','2016-12-12'),(41,'Tham gia hội thao CNVC','Cán bộ công nhân viên chức',39,44,2032,'null','Hoàn thành','2016-12-24','2016-12-12','2016-12-12'),(42,'Tham gia diễn đàn thảo luận','Tham gia các diễn đàn',39,44,2022,'null','Hoàn thành','2016-12-25','2016-12-12','2016-12-12'),(43,'Nghiên cứu khoa học',NULL,39,44,NULL,NULL,'Chưa giao',NULL,NULL,'2016-12-12'),(44,'Test',NULL,0,44,NULL,NULL,'Chưa giao',NULL,NULL,'2016-12-12'),(45,'Test 1',NULL,44,44,NULL,NULL,'Chưa giao',NULL,NULL,'2016-12-12');
 /*!40000 ALTER TABLE `minhchung` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -155,7 +155,7 @@ CREATE TABLE `user` (
 
 LOCK TABLES `user` WRITE;
 /*!40000 ALTER TABLE `user` DISABLE KEYS */;
-INSERT INTO `user` VALUES (11,'123','Nguyễn Văn A','01202103','31/03/1995',1,'abc@gmail.com'),(22,'123','Trần Thị Thanh','012032103','12/10/1995',2,'bch@gmail.com'),(33,'123','Hoàng Hải','012301230','11/2/1993',3,'bitxhka@gmail.com'),(44,'123','Đỗ Hiền Hậu','012303002','21/1/1992',4,'asdkj@gmail.com'),(55,'123','Nguyễn Thanh Tra','0301205','4/1/1991',5,'mbkj@gmail.com'),(1201,'dinhdang','Đình Đặng','0968981323','20/11/1995',2,'dangmaidinh@gmail.com'),(1301,'dinhdang','Mai Đình','968981323','20/11/1995',3,'dangmaidinh@gmail.com'),(2022,'12345','Nguyễn Minh Hải','123456789','1/1/1965',2,'cvb@gmail.com'),(2032,'12345','Dinh Dang','0968981323','20/11/1995',2,'dangmaidinh@gmail.com'),(13110032,'dinhdang','Đặng Mai Đình','0968981323','20/11/1995',1,'dangmaidinh@gmail.com');
+INSERT INTO `user` VALUES (11,'1234','Nguyễn Thanh Thủy','123456789','20/11/1995',1,'ttn@gmail.com'),(22,'123','Trần Thị Thanh','012032103','12/10/1995',2,'bch@gmail.com'),(33,'123','Hoàng Hải','012301230','11/2/1993',3,'bitxhka@gmail.com'),(44,'123','Đỗ Hiền Hậu','012303002','21/1/1992',4,'asdkj@gmail.com'),(55,'123','Nguyễn Thanh Tra','0301205','4/1/1991',5,'mbkj@gmail.com'),(1201,'dinhdang','Đình Đặng','0968981323','20/11/1995',2,'dangmaidinh@gmail.com'),(2022,'12345','Nguyễn Minh Hải','123456789','1/1/1965',2,'cvb@gmail.com'),(2032,'12345','Dinh Dang','0968981323','20/11/1995',2,'dangmaidinh@gmail.com'),(13110032,'dinhdang','Đặng Mai Đình','0968981323','20/11/1995',1,'dangmaidinh@gmail.com');
 /*!40000 ALTER TABLE `user` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -168,4 +168,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2016-12-10 19:04:42
+-- Dump completed on 2016-12-12 17:27:54

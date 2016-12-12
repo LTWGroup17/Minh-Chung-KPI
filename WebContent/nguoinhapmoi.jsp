@@ -171,24 +171,21 @@ height: 100%;">
 									           if(rs2.next()){
 									         %>	    
 	            						<ul>
-	            							<li>Tên:
-	            							</li>
-	            							<li>Mô tả: <span>
+	            							<li style="color:Salmon">Mô tả: <span style="color:gray"><i>
 	            							<%if(rs2.getString("mota") == null){ %>
 												<span style="color:red">Chưa có</span>
 											<%}else{ %>	            							
-	            							<%=rs2.getString("mota") %></span>
+	            							<%=rs2.getString("mota") %></i></span>
 	            							<%} %>
 	            							</li>
-	            							<li>Người nhập:
-	            							<%if(rs2.getString("nguoiduocgiao") == null){ %>
-												<span style="color:red"></span>
+	            							<li style="color:Salmon">Người nhập: <span style="color:gray"><%=rs2.getString("nguoiduocgiao") %></span></li>
+	            							<li style="color:Salmon">Tình Trạng: <span style="color:gray"><%=rs2.getString("trangthai") %></span></li>
+	            							<li style="color:Salmon">Ngày nhập: <span style="color:gray"><i>
+	            							<%if(rs2.getString("ngaynhap") == null){ %>
+												<span style="color:gray">Chưa nhập</span>
 											<%}else{ %>	            							
-	            							<%=rs2.getString("nguoiduocgiao") %></span>
-	            							<%} %>
-	            							</li>
-	            							<li>Các File đính kèm: </li>
-	            							<li>Tình Trạng: <span><%=rs2.getString("trangthai") %></span></li>
+	            							<%=rs2.getString("ngaynhap") %></i></span>
+	            							<%} %></li>
 	            						</ul>
 	            						<%} %>
 	            					</li>
@@ -273,6 +270,7 @@ height: 100%;">
           
           
         %>
+     
   <div class="modal fade" id="myModal<%=rs4.getInt("idmucmc") %>" role="dialog">
 		<div class="modal-dialog">
 			<!-- Modal content-->
@@ -280,11 +278,12 @@ height: 100%;">
 				<div class="modal-header">
 					<button type="button" class="close" data-dismiss="modal">&times;</button>
 					<h4 class="modal-title" align="center">Nhập Minh Chứng</h4>
-					<label>Tên minh chứng: <%=rs4.getString("tenmucmc") %></label>
+					
 					
 				</div>
 				<form method="POST" action="NhapMinhChungServlet?id=<%=rs4.getInt("idmucmc") %>">
 					<div class="modal-body">
+						<label>Tên minh chứng: <%=rs4.getString("tenmucmc") %></label>
 						<div class="form-group">
 							<label for="exampleInputEmail1">Mô tả minh chứng</label>
 							<input type="hidden" value="<%=rs4.getInt("idmucmc")%>" name="idmucminhchung">
@@ -293,13 +292,8 @@ height: 100%;">
 								placeholder="Tham gia đầy đủ các hoạt động" name="mota">
 						</div>
 						<div class="form-group">
-							<label for="exampleInputEmail1">Thời gian</label> <input
-								type="date" class="form-control" id="exampleInputEmail1"
-								placeholder="29/10/2016">
-						</div>
-						<div class="form-group">
-							<label for="exampleInputFile">Các File đính kèm</label> <input
-								type="file" id="exampleInputFile">
+							<label for="exampleInputFile">Các File đính kèm</label> 
+							<input id="input-1a" type="file" class="file" data-show-preview="false">
 						</div>
 						<br>
 						<div class="row">

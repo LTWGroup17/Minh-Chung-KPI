@@ -1,3 +1,5 @@
 eclipse.preferences.version=1
 encoding//src/mypack/GiaoMinhChungServlet.java=UTF-8
 encoding//src/mypack/LoginServlet.java=UTF-8
+encoding//src/mypack/SuaMinhChungServlet.java=UTF-8
+encoding//src/mypack/ThemMinhChungServlet.java=UTF-8

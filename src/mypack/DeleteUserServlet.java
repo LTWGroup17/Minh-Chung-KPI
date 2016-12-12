@@ -48,7 +48,7 @@ public class DeleteUserServlet extends HttpServlet {
 			}
 			else
 			{
-				System.out.println("Lỗi cmnr");
+				System.out.println("Abc cmnr");
 			}
 			
 		} catch (Exception e) {

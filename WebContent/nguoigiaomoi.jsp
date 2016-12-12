@@ -135,17 +135,21 @@ height: 100%;">
 									           
 									         %>	    
 	            						<ul>
-	            							<li>Tên: </li>
-	            							<li>Mô tả: <span>
+	            							<li style="color:Salmon">Mô tả: <span style="color:gray"><i>
 	            							<%if(rs2.getString("mota") == null){ %>
 												<span style="color:red">Chưa có</span>
 											<%}else{ %>	            							
-	            							<%=rs2.getString("mota") %></span>
+	            							<%=rs2.getString("mota") %></i></span>
 	            							<%} %>
 	            							</li>
-	            							<li>Người nhập: </li>
-	            							<li>Các File đính kèm: </li>
-	            							<li>Tình Trạng: <span><%=rs2.getString("trangthai") %></span></li>
+	            							<li style="color:Salmon">Người nhập: <span style="color:gray"><%=rs2.getString("nguoiduocgiao") %></span></li>
+	            							<li style="color:Salmon">Tình Trạng: <span style="color:gray"><%=rs2.getString("trangthai") %></span></li>
+	            							<li style="color:Salmon">Ngày nhập: <span style="color:gray"><i>
+	            							<%if(rs2.getString("ngaynhap") == null){ %>
+												<span style="color:gray">Chưa nhập</span>
+											<%}else{ %>	            							
+	            							<%=rs2.getString("ngaynhap") %></i></span>
+	            							<%} %></li>
 	            						</ul>
 	            						<%} %>
 	            					</li>

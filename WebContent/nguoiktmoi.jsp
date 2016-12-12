@@ -163,7 +163,27 @@ height: 100%">
 									           if(rs2.next()){
 									           
 									           
-									         %>	    
+									         %>	   
+									       <ul>
+									      	<li style="color:Salmon">Người tạo: <span style="color:gray"><%=rs2.getString("nguoitao") %></span></li>
+									      	<li style="color:Salmon">Ngày tạo: <span style="color:gray"><%=rs2.getString("ngaytao") %></span></li>
+	            							<li style="color:Salmon">Mô tả: <span style="color:gray"><i>
+	            							<%if(rs2.getString("mota") == null){ %>
+												<span style="color:red">Chưa có</span>
+											<%}else{ %>	            							
+	            							<%=rs2.getString("mota") %></i></span>
+	            							<%} %>
+	            							</li>
+	            							<li style="color:Salmon">Người nhập: <span style="color:gray"><%=rs2.getString("nguoiduocgiao") %></span></li>
+	            							<li style="color:Salmon">Tình Trạng: <span style="color:gray"><%=rs2.getString("trangthai") %></span></li>
+	            							<li style="color:Salmon">Ngày nhập: <span style="color:gray"><i>
+	            							<%if(rs2.getString("ngaynhap") == null){ %>
+												<span style="color:gray">Chưa nhập</span>
+											<%}else{ %>	            							
+	            							<%=rs2.getString("ngaynhap") %></i></span>
+	            							<%} %></li>
+	            							<li style="color:Salmon">Hạn cuối: <span style="color:gray"><%=rs2.getString("ngayhoanthanh") %></span></li>
+	            						</ul> 
 	            						<%} %>
 	            					</li>
             					
